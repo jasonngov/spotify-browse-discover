@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import './App.css';
+import './Home'
 
-class App extends Component {
+class Home extends Component {
   constructor (props) {
     super(props);
 
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     const { quote } = this.state;
     return (
-      <div className="App">
+      <div className="Home" style={{textAlign: 'center'}}>
         <h1>{quote}</h1>
         <button onClick={this.handleClick}>Click Me</button>
       </div>
@@ -40,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
