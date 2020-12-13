@@ -3,28 +3,16 @@ import {
   BrowserRouter as Router,
   Switch, 
   Route,
-  Link
 } from 'react-router-dom'
-import Home from './components/Home'
-import Redirect from './components/Redirect'
+import Home from './components/Home.jsx'
+import Welcome from './components/Welcome.jsx'
 
 class AppRouter extends Component {
   render() {
     return (
       <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/redirect">Redirect</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Switch>
-          <Route path="/redirect" component={Redirect}/>
+          <Route path="/welcome" component={Welcome}/>
           <Route path="/" component={Home} />
         </Switch>
       </Router>
