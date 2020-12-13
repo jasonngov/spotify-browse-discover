@@ -8,4 +8,12 @@ export default class SpotifyApi {
             }
         })
     }
+    
+    static getArtist = (token, search) => {
+        return axios.get(`https://api.spotify.com/v1/search?query=${search}&offset=0&limit=5&type=artist`, {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        })
+    }
 }

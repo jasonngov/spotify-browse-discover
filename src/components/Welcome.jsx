@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import SpotifyApi from '/Users/jasonngov/Desktop/spotify-api/src/Api/SpotifyApi.js'
+import SearchBar from './SearchBar'
 import query from 'query-string'
 
 class Welcome extends Component {
@@ -9,7 +10,8 @@ class Welcome extends Component {
     
         this.state = {
           quote: '',
-          name: ''
+          name: '',
+          token: ''
         }
       }
       getKanyeQuote = () => {
@@ -24,12 +26,12 @@ class Welcome extends Component {
     
       componentDidMount() {
         let token = query.parse(window.location.search).access_token
-        SpotifyApi.getUser(token).then(response => {this.setState({name: response.data.display_name})})
+        SpotifyApi.getUser(token).then(response => {this.setState({name: response.data.display_name, token: token})})
+
         this.getKanyeQuote();
       }
     
       componentDidUpdate () {
-    
       }
       
       handleClick = () => {
@@ -66,9 +68,10 @@ class Welcome extends Component {
     
       // TODO: add player to automatically play music in the background
       render() {
-        const { quote } = this.state;
+        const { quote, token} = this.state;
         return (
           <div className="Home" style={{textAlign: 'center'}}>
+            <SearchBar token={token} />
             <h1>{quote}</h1>
             <button onClick={this.handleClick}>Click Me</button>
             <br />
