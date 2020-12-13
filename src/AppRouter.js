@@ -4,7 +4,7 @@ import {
   Switch, 
   Route,
 } from 'react-router-dom'
-import Home from './components/Home.jsx'
+import SignIn from './components/SignIn.jsx'
 import Welcome from './components/Welcome.jsx'
 
 class AppRouter extends Component {
@@ -13,7 +13,7 @@ class AppRouter extends Component {
       <Router>
         <Switch>
           <Route path="/welcome" component={Welcome}/>
-          <Route path="/" component={Home} />
+          <Route path="/" component={SignIn} />
         </Switch>
       </Router>
     )

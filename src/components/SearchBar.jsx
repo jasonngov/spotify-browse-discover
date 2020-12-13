@@ -8,13 +8,13 @@ class SearchBar extends Component {
 
         this.state = {
             search: '',
-            dropdown: {}
+            artists: []
         };
     }
 
     updateInput = (e) => {
         const { token } = this.props
-        const { search, dropdown } = this.state 
+        const { search, artists } = this.state 
         this.setState(
             {
                 search: e.target.value
@@ -24,29 +24,29 @@ class SearchBar extends Component {
         if (token && search.length > 0) {
             SpotifyApi.getArtist(token, search)
             .then(response => {
-                const artists = response.data.artists.items
-                artists.map((artist) => {
-                    // TODO: store artists in state
-                    /*
-                        id: artist.id,
-                        genres: artist.genres > 0 ? artist.genres : '',
-                        followers: artist.followers
-                    */
-                   console.log(artist.name)
-                })
-            })
-            console.log("-------------------")
+                const data = response.data.artists.items
+                const names = data.map((artist) => artist.name)
+                this.setState(
+                    {artists: names}
+                )
+
+             })
         }
+        console.log(artists)
     }
     render () {
+        const { artists } = this.state
+
         return (
-            <input 
-            type="text" 
-            placeholder="Search.." 
-            value={this.state.search}
-            onChange={this.updateInput}
-            style={{'margin': '10px'}}
-            />
+            <div className="dropdown">
+                <input 
+                    type="text" 
+                    placeholder="Search.." 
+                    value={this.state.search}
+                    onChange={this.updateInput}
+                    style={{'margin': '10px'}}
+                />
+            </div>
         )
     }
 }

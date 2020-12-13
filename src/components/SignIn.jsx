@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Home'
+import './SignIn'
 
-class Home extends Component {
+class SignIn extends Component {
   render() {
     return (
       <button 
@@ -14,4 +14,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default SignIn;
