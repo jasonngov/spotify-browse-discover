@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import SpotifyApi from '/Users/jasonngov/Desktop/spotify-api/src/Api/SpotifyApi.js'
 import query from 'query-string'
 
 class Welcome extends Component {
@@ -8,7 +9,7 @@ class Welcome extends Component {
     
         this.state = {
           quote: '',
-          token: ''
+          name: ''
         }
       }
       getKanyeQuote = () => {
@@ -22,7 +23,8 @@ class Welcome extends Component {
       }
     
       componentDidMount() {
-        let uri = query.parse(window.location.search)
+        let token = query.parse(window.location.search).access_token
+        SpotifyApi.getUser(token).then(response => {this.setState({name: response.data.display_name})})
         this.getKanyeQuote();
       }
     
