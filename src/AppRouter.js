@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import SignIn from './components/SignIn.jsx'
 import Welcome from './components/Welcome.jsx'
+import './AppRouter.css'
 
 class AppRouter extends Component {
   render() {

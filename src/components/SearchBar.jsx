@@ -1,51 +1,67 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import SpotifyApi from '/Users/jasonngov/Desktop/spotify-api/src/Api/SpotifyApi.js'
-
+import SpotifyApi from '../Api/SpotifyApi'
+import '../SearchBar.css'
 class SearchBar extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
             search: '',
-            artists: []
+            suggestions: []
         };
     }
 
-    updateInput = (e) => {
+    handleChange = (e) => {
         const { token } = this.props
-        const { search, artists } = this.state 
+        const { search } = this.state 
         this.setState(
             {
                 search: e.target.value
             }
         )
-
+        
         if (token && search.length > 0) {
             SpotifyApi.getArtist(token, search)
             .then(response => {
                 const data = response.data.artists.items
                 const names = data.map((artist) => artist.name)
                 this.setState(
-                    {artists: names}
+                    {suggestions: names}
                 )
-
              })
         }
-        console.log(artists)
     }
-    render () {
-        const { artists } = this.state
 
+    renderSuggestions = () => {
+        const { suggestions } = this.state
+        if (suggestions.length > 0) {
+            return (
+                <ul>
+                    {suggestions.map(artist => <li onClick={() => {this.suggestionSelected(artist)}}>{artist}</li>)}
+                </ul>
+            )
+        }
+    }
+
+    suggestionSelected = (value) => {
+        this.setState({
+            search: value,
+            suggestions: []
+        })
+    }
+
+    render () {
         return (
-            <div className="dropdown">
+            <div className="SearchBar">
                 <input 
                     type="text" 
                     placeholder="Search.." 
                     value={this.state.search}
-                    onChange={this.updateInput}
-                    style={{'margin': '10px'}}
+                    onChange={this.handleChange}
+                    style={{'width':'250px', 'margin-top': '10px'}}
                 />
+                {this.renderSuggestions()}
             </div>
         )
     }
