@@ -14,22 +14,24 @@ class SearchBar extends Component {
 
     handleChange = (e) => {
         const { token } = this.props
-        const { search } = this.state 
-        this.setState(
-            {
-                search: e.target.value
+        const search = e.target.value
+
+        if (token) {
+            if (search.length > 0) {
+                SpotifyApi.getArtist(token, search)
+                .then(response => {
+                    const data = response.data.artists.items
+                    const names = data.map((artist) => artist.name)
+                    this.setState({suggestions: names})
+                })
+                this.setState({search: search})
             }
-        )
-        
-        if (token && search.length > 0) {
-            SpotifyApi.getArtist(token, search)
-            .then(response => {
-                const data = response.data.artists.items
-                const names = data.map((artist) => artist.name)
-                this.setState(
-                    {suggestions: names}
-                )
-             })
+            else {
+                this.suggestionSelected("")
+            }
+        } 
+        else {
+            alert("Invalid token. Please direct to localhost:8080/login")
         }
     }
 
