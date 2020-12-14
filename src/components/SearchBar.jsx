@@ -8,7 +8,8 @@ class SearchBar extends Component {
 
         this.state = {
             search: '',
-            suggestions: []
+            suggestions: [],
+            selected: false
         };
     }
 
@@ -22,12 +23,12 @@ class SearchBar extends Component {
                 .then(response => {
                     const data = response.data.artists.items
                     const names = data.map((artist) => artist.name)
-                    this.setState({suggestions: names})
+                    this.setState({suggestions: names, selected: false})
                 })
                 this.setState({search: search})
             }
             else {
-                this.suggestionSelected("")
+                this.setState({search: "", suggestions: [],selected: false})
             }
         } 
         else {
@@ -49,7 +50,8 @@ class SearchBar extends Component {
     suggestionSelected = (value) => {
         this.setState({
             search: value,
-            suggestions: []
+            suggestions: [],
+            selected: true
         })
     }
 
@@ -58,7 +60,7 @@ class SearchBar extends Component {
             <div className="SearchBar">
                 <input 
                     type="text" 
-                    placeholder="Search.." 
+                    placeholder="Search..." 
                     value={this.state.search}
                     onChange={this.handleChange}
                     style={{'width':'250px', 'margin-top': '10px'}}
