@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { selectArtist } from '../Redux/Actions/ArtistSelectAction'
 import SpotifyApi from '../Api/SpotifyApi'
-import '../SearchBar.css'
+import './SearchBar.css'
 class SearchBar extends Component {
     constructor (props) {
         super(props)
@@ -53,6 +55,7 @@ class SearchBar extends Component {
             suggestions: [],
             selected: true
         })
+        // dispatch action here to store artist name in redux
     }
 
     render () {
@@ -79,4 +82,12 @@ SearchBar.defaultProps = {
     token: ''
 }
 
-export default SearchBar
+const mapStateToProps = (state) => {
+    
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
