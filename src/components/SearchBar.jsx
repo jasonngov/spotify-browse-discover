@@ -24,7 +24,16 @@ class SearchBar extends Component {
                 SpotifyApi.getArtist(token, search)
                 .then(response => {
                     const data = response.data.artists.items
-                    const names = data.map((artist) => artist.name)
+                    const names = data.map((artist) => {
+                        const artistInfo = {
+                            artist: artist.name,
+                            id: artist.id,
+                            genres: artist.genres,
+                            followers: artist.followers.total,
+                            images: artist.images
+                        }
+                        return artistInfo
+                    })
                     this.setState({suggestions: names, selected: false})
                 })
                 this.setState({search: search})
@@ -44,23 +53,26 @@ class SearchBar extends Component {
         if (suggestions.length > 0) {
             return (
                 <ul>
-                    {suggestions.map(artist => <li onClick={() => {this.suggestionSelected(artist)}}>{artist}</li>)}
+                    {suggestions.map(artist => <li onClick={() => {this.suggestionSelected(artist)}}>{artist.artist}</li>)}
                 </ul>
             )
         }
     }
 
-    suggestionSelected = (value) => {
+    suggestionSelected = (artistInfo) => {
         const { dispatchSelectArtist } = this.props;
 
         this.setState({
-            search: value,
+            search: artistInfo.artist,
             suggestions: [],
             selected: true
         })
 
         // dispatch action here to store artist name in redux
-        const data = {value: value, selected: true}
+        const data = {
+            ...artistInfo,
+            selected: true
+        }
         dispatchSelectArtist(data)
     }
 
