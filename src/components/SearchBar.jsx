@@ -88,12 +88,8 @@ SearchBar.defaultProps = {
     token: ''
 }
 
-const mapStateToProps = (state) => {
-    
-}
-
 const mapDispatchToProps = (dispatch) => ({
     dispatchSelectArtist: (data) => dispatch(selectArtist(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(null, mapDispatchToProps)(SearchBar)
