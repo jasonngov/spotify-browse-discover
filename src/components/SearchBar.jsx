@@ -16,7 +16,7 @@ class SearchBar extends Component {
     }
 
     handleChange = (e) => {
-        const { token } = this.props
+        const { token, dispatchSelectArtist } = this.props
         const search = e.target.value
 
         if (token) {
@@ -31,6 +31,7 @@ class SearchBar extends Component {
             }
             else {
                 this.setState({search: "", suggestions: [],selected: false})
+                dispatchSelectArtist(null)
             }
         } 
         else {
@@ -50,12 +51,17 @@ class SearchBar extends Component {
     }
 
     suggestionSelected = (value) => {
+        const { dispatchSelectArtist } = this.props;
+
         this.setState({
             search: value,
             suggestions: [],
             selected: true
         })
+
         // dispatch action here to store artist name in redux
+        const data = {value: value, selected: true}
+        dispatchSelectArtist(data)
     }
 
     render () {
@@ -86,8 +92,8 @@ const mapStateToProps = (state) => {
     
 }
 
-const mapDispatchToProps = (dispatch) => {
-
-}
+const mapDispatchToProps = (dispatch) => ({
+    dispatchSelectArtist: (data) => dispatch(selectArtist(data))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

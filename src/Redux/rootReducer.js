@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import artistSelectReducer from './Reducer/ArtistSelectReducer'
 
 const rootReducers = combineReducers({
-    artistSelect: artistSelectReducer
+    selectArtist: artistSelectReducer
 })
 
 export default rootReducers
