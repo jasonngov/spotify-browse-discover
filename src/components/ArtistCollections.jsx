@@ -24,10 +24,20 @@ class ArtistCollections extends Component {
                     albumImages: album.images,
                     albumName: album.name,
                     albumTracks: album.total_tracks,
+                    albumExternalUrl: album.external_urls.spotify
                 }
                 return albumData;
             })
-            this.setState({albumData: albumObject})
+
+            // TODO: continue reducing # of repeated albums
+            const unique = albumObject
+            .map(e => e['albumName'])
+            .map((e, i, final) => final.indexOf(e) === i && i)
+            .filter(obj=> albumObject[obj])
+            .map(e => albumObject[e]);
+
+            console.log(unique)
+            this.setState({albumData: unique})
         })    
     }
 
@@ -45,10 +55,18 @@ class ArtistCollections extends Component {
                         albumImages: album.images,
                         albumName: album.name,
                         albumTracks: album.total_tracks,
+                        albumExternalUrl: album.external_urls.spotify
                     }
                     return albumData;
                 })
-                this.setState({albumData: albumObject})
+
+            // TODO: continue reducing # of repeated albums
+            const unique = albumObject
+            .map(e => e['albumName'])
+            .map((e, i, final) => final.indexOf(e) === i && i)
+            .filter(obj=> albumObject[obj])
+            .map(e => albumObject[e]);
+            this.setState({albumData: unique})
             })        
         }
     }
@@ -57,7 +75,7 @@ class ArtistCollections extends Component {
         const { albumData } = this.state;
         const { token } = this.props;
         return (
-            <div>
+            <div style={{marginLeft: '50px', marginRight: '25px'}}>
                 {albumData && albumData.map(album => <AlbumCard albumInfo={album} token={token}/>)}
             </div>
         )

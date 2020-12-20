@@ -26,7 +26,7 @@ export default class SpotifyApi {
     }
 
     static getAlbums = (token, artistId) => {
-        return axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums/?offset=0&limit=50&include_groups=album`, {
+        return axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=album&market=US&limit=30`, {
             headers: {
                 'Authorization' : 'Bearer ' + token
             }
