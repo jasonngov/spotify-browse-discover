@@ -44,7 +44,7 @@ class SearchBar extends Component {
             }
         } 
         else {
-            alert("Invalid token. Please direct to localhost:8080/login")
+            window.location.replace("http:/localhost:8080/")
         }
     }
 
@@ -84,7 +84,7 @@ class SearchBar extends Component {
                     placeholder="Search..." 
                     value={this.state.search}
                     onChange={this.handleChange}
-                    style={{'width':'250px', 'margin-top': '10px'}}
+                    style={{'width':'250px', 'margin-top': '10px', 'margin-right': '50px', 'float':'right'}}
                 />
                 {this.renderSuggestions()}
             </div>

@@ -34,9 +34,11 @@ class AlbumCard extends Component {
         }
 
         return (
-            <div className={albumInfo.albumName} style={{'display': 'inline-block', 'float': 'left'}}>
-                <a href={albumInfo.albumExternalUrl} target="_blank">
+            <div className={albumInfo.albumName} style={{'display': 'inline-block', 'float': 'left', 'width':'133px', 'height':'133px'}}>
+                <a href={albumInfo.albumExternalUrl} target="_blank" rel="noreferrer" style={{'height':'0px'}}>
                     <img src={imageUrl} alt={albumInfo.albumName} width='133px' height='133px'
+                    object-fit='fill'
+                    style={{margin: '0 auto'}}
                     onMouseOver={onHover}
                     onMouseOut={onStop}
                     />
