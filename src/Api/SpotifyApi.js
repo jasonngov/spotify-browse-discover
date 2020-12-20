@@ -24,4 +24,20 @@ export default class SpotifyApi {
             }
         })
     }
+
+    static getAlbums = (token, artistId) => {
+        return axios.get(`https://api.spotify.com/v1/artists/${artistId}/albums/?offset=0&limit=50&include_groups=album`, {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        })
+    }
+
+    static getTracks = (token, albumId) => {
+        return axios.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+            headers: {
+                'Authorization' : 'Bearer ' + token
+            }
+        })
+    }
  }

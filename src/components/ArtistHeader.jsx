@@ -4,10 +4,6 @@ import './ArtistHeader.css'
 import SpotifyApi from '../Api/SpotifyApi';
 
 class ArtistHeader extends Component {
-    constructor (props) {
-        super(props)
-    }
-
     render() {
         const { artistInfo } = this.props;
         const { artist, genres, followers } = artistInfo
@@ -34,7 +30,6 @@ class ArtistHeader extends Component {
         }
 
         const onStop = () => {
-
             var player = document.getElementById("player")
             player.pause()
             player.currentTime = 0
@@ -44,7 +39,7 @@ class ArtistHeader extends Component {
         return (
             // TODO: autosize the image
             // add album cover on the right?
-            <div className='artistHeader'>
+            <div className='artistHeader' style={{height:"250px"}}>
                 <div className='artistImage' style={{'display': 'inline-block', 'float': 'left'}}>
                     <img src={artistInfo.images[0].url} alt={artist} width='133px' height='133px' 
                     style={{borderRadius: '50%', marginLeft: '50px', marginTop: '50px'}}
