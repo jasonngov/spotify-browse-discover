@@ -74,10 +74,11 @@ class ArtistCollections extends Component {
     render() {
         const { albumData } = this.state;
         const { token } = this.props;
+
         return (
             <div style={{marginLeft: '50px', marginRight: '25px', marginTop: '100px'}}>
-                <h3 style={{textAlign: 'left'}}>Albums</h3>
-                {albumData && albumData.map(album => <AlbumCard albumInfo={album} token={token}/>)}
+                {albumData?.length > 0 && <h3 style={{textAlign: 'left'}}>Albums</h3>}
+                {albumData?.length > 0 && albumData.map(album => <AlbumCard albumInfo={album} token={token}/>)}
             </div>
         )
     }

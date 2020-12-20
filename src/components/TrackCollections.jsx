@@ -62,8 +62,8 @@ class TrackCollections extends Component {
         const { trackData } = this.state;
         return (
             <div style={{marginLeft: '50px', marginRight: '25px', height: '100px'}}>
-                <h3 style={{textAlign: 'left'}}>Top Tracks</h3>
-                {trackData && trackData.map(track => <TrackCard trackInfo={track}/>)}
+                {trackData?.length > 0 && <h3 style={{textAlign: 'left'}}>Top Tracks</h3>}
+                {trackData?.length > 0 && trackData.map(track => <TrackCard trackInfo={track}/>)}
             </div>
         )
     }
