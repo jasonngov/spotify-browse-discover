@@ -18,7 +18,7 @@ export default class SpotifyApi {
     }
 
     static getTopTracks = (token, artistId) => {
-        return axios.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`, {
+        return axios.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`, {
             headers: {
                 'Authorization' : 'Bearer ' + token
             }

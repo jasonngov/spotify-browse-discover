@@ -36,7 +36,6 @@ class ArtistCollections extends Component {
             .filter(obj=> albumObject[obj])
             .map(e => albumObject[e]);
 
-            console.log(unique)
             this.setState({albumData: unique})
         })    
     }
@@ -66,16 +65,18 @@ class ArtistCollections extends Component {
             .map((e, i, final) => final.indexOf(e) === i && i)
             .filter(obj=> albumObject[obj])
             .map(e => albumObject[e]);
+
             this.setState({albumData: unique})
-            })        
-        }
+        })        
     }
+}
 
     render() {
         const { albumData } = this.state;
         const { token } = this.props;
         return (
-            <div style={{marginLeft: '50px', marginRight: '25px'}}>
+            <div style={{marginLeft: '50px', marginRight: '25px', marginTop: '100px'}}>
+                <h3 style={{textAlign: 'left'}}>Albums</h3>
                 {albumData && albumData.map(album => <AlbumCard albumInfo={album} token={token}/>)}
             </div>
         )

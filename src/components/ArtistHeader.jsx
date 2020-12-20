@@ -37,15 +37,15 @@ class ArtistHeader extends Component {
         }
 
         return (
-            // TODO: autosize the image
-            // add album cover on the right?
             <div className='artistHeader' style={{height:"200px"}}>
                 <div className='artistImage' style={{'display': 'inline-block', 'float': 'left'}}>
-                    <img src={artistInfo.images[0].url} alt={artist} width='133px' height='133px' 
-                    style={{borderRadius: '50%', marginLeft: '50px', marginTop: '50px'}}
-                    onMouseOver={onHover}
-                    onMouseOut={onStop}
+                    <a href={artistInfo.artistExternalUrl} target="_blank" rel="noreferrer" style={{'height':'0px'}}>
+                        <img src={artistInfo.images[0].url} alt={artist} width='133px' height='133px' 
+                        style={{borderRadius: '50%', marginLeft: '50px', marginTop: '50px'}}
+                        onMouseOver={onHover}
+                        onMouseOut={onStop}
                     />
+                    </a>
                 </div>
                 <div className='artistContent' style={{'display': 'inline-block', 'float': 'left', textAlign: "left"}}>
                     <h2 style={{marginLeft: '50px'}}>{artist}</h2>

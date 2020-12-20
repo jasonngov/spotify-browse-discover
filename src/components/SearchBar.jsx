@@ -30,7 +30,8 @@ class SearchBar extends Component {
                             id: artist.id,
                             genres: artist.genres,
                             followers: artist.followers.total,
-                            images: artist.images
+                            images: artist.images,
+                            artistExternalUrl: artist.external_urls.spotify
                         }
                         return artistInfo
                     })

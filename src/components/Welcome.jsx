@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import SpotifyApi from '/Users/jasonngov/Desktop/spotify-api/src/Api/SpotifyApi.js'
 import SearchBar from './SearchBar'
 import ArtistHeader from './ArtistHeader';
+import TrackCollections from './TrackCollections';
 import ArtistCollection from './ArtistCollections';
 import query from 'query-string'
 
@@ -29,6 +30,7 @@ class Welcome extends Component {
           <div className="Home" style={{'textAlign': 'center'}}>
               <SearchBar token={token} />
               {artistInfo && <ArtistHeader token={token}/>}
+              {artistInfo && <TrackCollections token={token}/>}
               {artistInfo && <ArtistCollection token={token}/>}
           </div>
         )
