@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import SpotifyApi from '/Users/jasonngov/Desktop/spotify-api/src/Api/SpotifyApi.js'
 import SearchBar from './SearchBar'
 import ArtistHeader from './ArtistHeader';
@@ -30,7 +29,7 @@ class Welcome extends Component {
             <SearchBar token={token} />
             <br />
             <br />
-            {artistInfo && <ArtistHeader />}
+            {artistInfo && <ArtistHeader token={token}/>}
           </div>
         )
       }
