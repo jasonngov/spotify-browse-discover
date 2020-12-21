@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AlbumCard from './AlbumCard'
 import SpotifyApi from '../Api/SpotifyApi';
+import Spinner from 'react-bootstrap/Spinner'
 
 class ArtistCollections extends Component {
     constructor (props) {
         super (props)
 
         this.state = {
-            albumData: null
+            albumData: null,
+            isLoading: false
         }
     }
     
@@ -45,6 +47,7 @@ class ArtistCollections extends Component {
 
         // If user searches for another artist, component compares previous props
         if (this.props.artistInfo.artist !== prevProps.artistInfo.artist) {
+            this.setState({isLoading: true})
             SpotifyApi.getAlbums(token, artistInfo.id)
             .then(response => {
                 const albums = response.data.items
@@ -66,19 +69,19 @@ class ArtistCollections extends Component {
             .filter(obj=> albumObject[obj])
             .map(e => albumObject[e]);
 
-            this.setState({albumData: unique})
+            this.setState({albumData: unique, isLoading: false})
         })        
     }
 }
 
     render() {
-        const { albumData } = this.state;
+        const { albumData, isLoading } = this.state;
         const { token } = this.props;
 
         return (
             <div style={{marginLeft: '50px', marginRight: '25px', marginTop: '100px'}}>
                 {albumData?.length > 0 && <h3 style={{textAlign: 'left'}}>Albums</h3>}
-                {albumData?.length > 0 && albumData.map(album => <AlbumCard albumInfo={album} token={token}/>)}
+                {albumData?.length > 0 && (isLoading ? <Spinner animation="border" role="status" /> : albumData.map(album => <AlbumCard albumInfo={album} token={token}/>))}
             </div>
         )
     }
