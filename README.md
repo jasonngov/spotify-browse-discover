@@ -24,7 +24,7 @@ You will also see any lint errors in the console.
 To start the authentication server, navgiate to /src/server/ and run this command in a separate terminal. 
 This navigates to an endpoint that authenticates and provides your bearer token from Spotify
 
-## Future Work:
+## Future Work
 - Add support to follow an artist
 - Add support for adding songs to your playlist
 - Fix uri endpoint when token expires
