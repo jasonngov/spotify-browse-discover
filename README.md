@@ -1,5 +1,5 @@
 # Getting Started 
-I created this project to familiarize myself with Spotify API and React/Redux. To run this build locally, you must clone this repository and register your local app with Spotify.
+I created this project to familiarize myself with Spotify API. To run this build locally, you must clone this repository and register your local app with Spotify.
 
 Here are some docs to help with Spotify's end:\
 https://developer.spotify.com/documentation/general/guides/app-settings/\
