@@ -28,4 +28,3 @@ This navigates to an endpoint that authenticates and provides your bearer token 
 - Add support to follow an artist
 - Add support for adding songs to your playlist
 - Fix uri endpoint when token expires
-- Make this repository public
